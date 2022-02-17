@@ -1,4 +1,7 @@
 class Bookmark < ApplicationRecord
-  has_many :movies
-  has_many :lists
+  belongs_to :movie
+  belongs_to :list
+
+  validates :comment, length: { minimum: 6 }
+  validates :movie_id, presence: true, uniqueness: { scope: :list_id }
 end
